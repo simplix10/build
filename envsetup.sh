@@ -142,8 +142,8 @@ function check_product()
         echo "Couldn't locate the top of the tree.  Try setting TOP." >&2
         return
     fi
-    if (echo -n $1 | grep -q -e "^aosp_") ; then
-        CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
+    if (echo -n $1 | grep -q -e "^simplix_") ; then
+        CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^simplix_//g')
         export BUILD_NUMBER=$( (date +%s%N ; echo $CUSTOM_BUILD; hostname) | openssl sha1 | sed -e 's/.*=//g; s/ //g' | cut -c1-10 )
     else
         CUSTOM_BUILD=
@@ -304,7 +304,7 @@ function setpaths()
     export ANDROID_PRE_BUILD_PATHS=$ANDROID_JAVA_TOOLCHAIN:
     export PATH=$ANDROID_PRE_BUILD_PATHS$PATH
 
-    unset ANDROID_PRODUCT_OUT
+    	unset ANDROID_PRODUCT_OUT
     export ANDROID_PRODUCT_OUT=$(get_abs_build_var PRODUCT_OUT)
     export OUT=$ANDROID_PRODUCT_OUT
 
